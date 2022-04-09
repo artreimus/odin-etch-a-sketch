@@ -1,3 +1,5 @@
+let color = "black";
+
 const createBoard = (size) => {
   let board = document.getElementById("board");
   let squareDivs = board.querySelectorAll("div");
@@ -9,15 +11,28 @@ const createBoard = (size) => {
   let squaredSize = Math.pow(size, 2);
 
   for (let i = 0; i < squaredSize; i++) {
-    let square = document.createElement("div");
-    square.style.backgroundColor = "blue";
+    square = document.createElement("div");
+    square.addEventListener("mouseover", colorSquare);
+    square.style.backgroundColor = "white";
     square.style.border = "2px solid black";
     board.insertAdjacentElement("beforeend", square);
   }
 };
 
-// createBoard(input);
+createBoard(16);
 
 function changeSize(value) {
-  createBoard(value);
+  if (value >= 1 && value <= 128) {
+    createBoard(value);
+  } else {
+    console.log("x");
+  }
+}
+
+function colorSquare() {
+  this.style.backgroundColor = color;
+}
+
+function changeColor(colorChoice) {
+  color = colorChoice;
 }
